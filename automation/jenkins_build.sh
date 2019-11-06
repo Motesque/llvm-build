@@ -18,12 +18,13 @@ case "$ARCH" in
 			;;
 		esac
 
+
 set -e
 mkdir -p $WORKSPACE/artifacts
 cd $WORKSPACE
 echo "Building LLVM for architecture '$ARCH'"
 docker build -t llvm-build-$ARCH --build-arg BALENA_ARCH=$ARCH --build-arg LLVM_ARCH=$LLVM_ARCH .
-z
+
 echo "Copying artifact..."
 if [[ $(uname) == "Darwin" ]]; thens
     docker run --rm -v $WORKSPACE/artifacts:/output llvm-build-$ARCH /bin/bash  -c "cp /llvm-*.tar.gz /output/"
