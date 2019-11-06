@@ -23,6 +23,13 @@ set -e
 mkdir -p $WORKSPACE/artifacts
 cd $WORKSPACE
 echo "Building LLVM for architecture '$ARCH'"
+# remove the crossbuild commands if needed
+if [[ $ARCH == "amd64" ]]; then
+    cat Dockerfile.in  | sed -e 's/RUN \[ "cross-build-start" \]//g' -e 's/RUN \[ \"cross-build-end\" \]//g' > Dockerfile
+else
+    cp Dockerfile.in Dockerfile
+fi
+
 docker build -t llvm-build-$ARCH --build-arg BALENA_ARCH=$ARCH --build-arg LLVM_ARCH=$LLVM_ARCH .
 
 echo "Copying artifact..."

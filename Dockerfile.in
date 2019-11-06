@@ -4,7 +4,7 @@ FROM balenalib/$BALENA_ARCH-debian:stretch-build-20190215
 ARG BALENA_ARCH
 ARG LLVM_ARCH
 
-RUN [ "if [ $BALENA_ARCH != "amd64" ]; then cross-build-start; fi" ]
+RUN [ "cross-build-start" ]
 
 RUN buildDeps=' \
 		curl \
@@ -37,4 +37,4 @@ RUN wget https://releases.llvm.org/8.0.0/llvm-8.0.0.src.tar.xz \
 
 RUN cd / && tar -cvzf $TAR_FILE llvm/*
 
-RUN [ "if [ $ARCH != "amd64" ]; then cross-build-end; fi" ]
+RUN [ "cross-build-end" ]
