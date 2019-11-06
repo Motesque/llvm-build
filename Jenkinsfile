@@ -6,7 +6,7 @@ scopethemove
 */
 
 pipeline {
-    agent any
+    agent { label 'fra1-jenkins-02.motesque.com' }
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +22,7 @@ pipeline {
 
             }
         }
-         stage('Build-raspberrypi3') {
+        stage('Build-raspberrypi3') {
             steps {
                 sh 'automation/jenkins_build.sh raspberrypi3'
                 archiveArtifacts 'artifacts/*.tar.gz'
