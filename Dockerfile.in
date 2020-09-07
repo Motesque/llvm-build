@@ -1,5 +1,5 @@
 ARG BALENA_ARCH
-FROM balenalib/$BALENA_ARCH-debian:stretch-build-20190215
+FROM balenalib/$BALENA_ARCH-debian:buster-build-20200502
 
 ARG BALENA_ARCH
 ARG LLVM_ARCH
@@ -26,7 +26,7 @@ RUN buildDeps=' \
 	' \
 	&& install_packages -y $buildDeps
 
-ENV TAR_FILE=llvm-8.0.0.linux-$BALENA_ARCH.tar.gz
+ENV TAR_FILE=llvm-8.0.0.linux-$BALENA_ARCH-buster.tar.gz
 
 RUN wget https://releases.llvm.org/8.0.0/llvm-8.0.0.src.tar.xz \
     && tar -xf llvm-8.0.0.src.tar.xz \
