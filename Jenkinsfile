@@ -6,7 +6,7 @@ scopethemove
 */
 
 pipeline {
-    agent { label 'fra1-jenkins-02.motesque.com' }
+    agent any 
     stages {
         stage('Checkout') {
             steps {
